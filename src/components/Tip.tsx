@@ -5,11 +5,10 @@ import "../style/Tip.css";
 interface State {
   compact: boolean;
   text: string;
-  emoji: string;
 }
 
 interface Props {
-  onConfirm: (comment: { text: string; emoji: string }) => void;
+  onConfirm: (comment: { text: string; }) => void;
   onOpen: () => void;
   onUpdate?: () => void;
   defaultText?: string;
@@ -18,8 +17,7 @@ interface Props {
 export class Tip extends Component<Props, State> {
   state: State = {
     compact: true,
-    text: this.props.defaultText || "",
-    emoji: "",
+    text: "",
   };
 
   // for TipContainer
@@ -32,8 +30,8 @@ export class Tip extends Component<Props, State> {
   }
 
   render() {
-    const { onConfirm, onOpen } = this.props;
-    const { compact, text, emoji } = this.state;
+    const { onConfirm, onOpen, defaultText } = this.props;
+    const { compact, text } = this.state;
 
     return (
       <div className="Tip">
@@ -52,14 +50,14 @@ export class Tip extends Component<Props, State> {
             className="Tip__card"
             onSubmit={(event) => {
               event.preventDefault();
-              onConfirm({ text, emoji });
+              onConfirm({ text: defaultText || text });
             }}
           >
             <div>
               <textarea
                 placeholder="Your comment"
                 autoFocus
-                value={text}
+                value={defaultText || text}
                 onChange={(event) =>
                   this.setState({ text: event.target.value })
                 }
