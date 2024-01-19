@@ -36,11 +36,11 @@ const resetHash = () => {
 const HighlightPopup = ({
   comment,
 }: {
-  comment: { text: string; emoji: string };
+  comment: { text: string };
 }) =>
   comment.text ? (
     <div className="Highlight__popup">
-      {comment.emoji} {comment.text}
+      {comment.text}
     </div>
   ) : null;
 
@@ -75,7 +75,7 @@ class App extends Component<{}, State> {
     });
   };
 
-  scrollViewerTo = (highlight: any) => {};
+  scrollViewerTo = (highlight: any) => { };
 
   scrollToHighlightFromHash = () => {
     const highlight = this.getHighlightById(parseIdFromHash());
@@ -122,11 +122,11 @@ class App extends Component<{}, State> {
         } = h;
         return id === highlightId
           ? {
-              id,
-              position: { ...originalPosition, ...position },
-              content: { ...originalContent, ...content },
-              ...rest,
-            }
+            id,
+            position: { ...originalPosition, ...position },
+            content: { ...originalContent, ...content },
+            ...rest,
+          }
           : h;
       }),
     });
