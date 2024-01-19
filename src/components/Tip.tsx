@@ -12,12 +12,13 @@ interface Props {
   onConfirm: (comment: { text: string; emoji: string }) => void;
   onOpen: () => void;
   onUpdate?: () => void;
+  defaultText?: string;
 }
 
 export class Tip extends Component<Props, State> {
   state: State = {
     compact: true,
-    text: "",
+    text: this.props.defaultText || "",
     emoji: "",
   };
 
