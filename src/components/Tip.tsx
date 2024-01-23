@@ -12,14 +12,14 @@ interface Props {
   onOpen: () => void;
   onUpdate?: () => void;
   defaultText?: string;
-  compact?: boolean;
+  compact: boolean;
 }
 
 export class Tip extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      compact: props.compact || true,
+      compact: props.compact,
       text: "",
     };
   }
